@@ -5,6 +5,7 @@ import android.app.Activity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -22,9 +23,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.omnidrive.ForgotPassword;
+import com.example.omnidrive.MainActivity;
 import com.example.omnidrive.R;
 import com.example.omnidrive.ui.login.LoginViewModel;
 import com.example.omnidrive.ui.login.LoginViewModelFactory;
+import com.example.omnidrive.ui.signup.SignupActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,6 +38,33 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        final Button loginBtn = findViewById(R.id.login);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // TODO : put logic to check email/pass combo from backend server
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        final Button signupBtn = findViewById(R.id.signupBtn);
+        signupBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        final TextView forgotPassword = findViewById(R.id.forgotPassword);
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
         /*
         loginViewModel = new ViewModelProvider(this, new LoginViewModelFactory())

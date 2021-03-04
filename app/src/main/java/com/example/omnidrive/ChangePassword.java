@@ -3,6 +3,7 @@ package com.example.omnidrive;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.omnidrive.ui.login.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -22,7 +23,8 @@ public class ChangePassword extends AppCompatActivity {
         final Button changePassword = (Button) findViewById(R.id.changePasswordBtn);
         changePassword.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Settings.class);
+                // TODO : backend logic to change password in database
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });

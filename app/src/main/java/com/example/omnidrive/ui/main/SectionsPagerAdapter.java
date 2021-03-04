@@ -30,15 +30,15 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch(position) {
             case 0:
-                fragment = new OneDriveFragment();
-                break;
-
-            case 1:
                 fragment = new GoogleDriveFragment();
                 break;
 
-            case 2:
+            case 1:
                 fragment = new DropBoxFragment();
+                break;
+
+            case 2:
+                fragment = new OneDriveFragment();
                 break;
         }
         return fragment;

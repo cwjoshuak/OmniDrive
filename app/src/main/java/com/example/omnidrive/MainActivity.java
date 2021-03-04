@@ -1,6 +1,8 @@
 package com.example.omnidrive;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
@@ -10,6 +12,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -19,40 +24,44 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private AppBarConfiguration mAppBarConfiguration;
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< HEAD
         setContentView(R.layout.activity_main);
-
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-=======
-        setContentView(R.layout.fragment_main);
->>>>>>> 9170ab3db24bad4e53831efa1b38352749f11f62
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.google_drive)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+        navigationView.setNavigationItemSelectedListener(this);
+
+        // TODO: populate name & email of user on sidebar from server data
+
     }
 
     @Override
@@ -68,4 +77,49 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.onedrive: {
+                ViewPager viewPager = findViewById(R.id.view_pager);
+                viewPager.setCurrentItem(2);
+                break;
+            }
+
+            case R.id.google_drive: {
+                ViewPager viewPager = findViewById(R.id.view_pager);
+                viewPager.setCurrentItem(0);
+                break;
+            }
+
+            case R.id.dropbox: {
+                ViewPager viewPager = findViewById(R.id.view_pager);
+                viewPager.setCurrentItem(1);
+                break;
+            }
+
+            case R.id.settings: {
+                Intent intent = new Intent(getApplicationContext(), Settings.class);
+                startActivity(intent);
+                break;
+            }
+
+            case R.id.account: {
+                Intent intent = new Intent(getApplicationContext(), AccountSettings.class);
+                startActivity(intent);
+                break;
+            }
+
+            case R.id.logout: {
+                Intent intent = new Intent(getApplicationContext(), WelcomePage.class);
+                startActivity(intent);
+                break;
+            }
+        }
+        //close navigation drawer
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
 }

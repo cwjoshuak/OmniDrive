@@ -9,9 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OmniDrive">
-<<<<<<< HEAD
         <activity android:name=".AccountSettings"></activity>
-=======
 
         <activity android:name=".WelcomePage">
             <intent-filter>
@@ -20,8 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
->>>>>>> 5793c61 (added welcome page plus button activities)
+        
         <activity
             android:name=".ChangePassword"
             android:label="@string/title_activity_change_password"

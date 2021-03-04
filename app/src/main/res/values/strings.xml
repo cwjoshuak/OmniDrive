@@ -25,9 +25,9 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_main2">MainActivity2</string>
-    <string name="tab_text_1">OneDrive</string>
-    <string name="tab_text_2">Google Drive</string>
-    <string name="tab_text_3">DropBox</string>
+    <string name="tab_text_1">Google Drive</string>
+    <string name="tab_text_2">DropBox</string>
+    <string name="tab_text_3">OneDrive</string>
     <string name="title_activity_home_page">HomePage</string>
     <string name="remember_me">Remember me</string>
     <string name="or">OR</string>
