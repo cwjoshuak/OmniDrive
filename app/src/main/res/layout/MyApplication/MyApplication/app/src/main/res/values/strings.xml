@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="enter_your_email_address_to_n_reset_your_password">Enter your email address to reset your password</string>
+    <string name="reset">Reset</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="tyour_email"> Your Email</string>
+    <string name="title_activity_drive_tabs">driveTabs</string>
+    <string name="tab_text_1">OneDrive</string>
+    <string name="tab_text_2">Google Drive</string>
+    <string name="tab_text_3">DropBox</string>
+    <string name="title_activity_home_page">HomePage</string>
+
+</resources>
