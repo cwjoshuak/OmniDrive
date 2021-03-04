@@ -139,7 +139,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/signup"
+        android:id="@+id/changePassword"
         android:layout_width="328dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
