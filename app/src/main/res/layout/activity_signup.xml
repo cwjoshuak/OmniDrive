@@ -16,12 +16,12 @@
         android:layout_width="313dp"
         android:layout_height="wrap_content"
         app:boxBackgroundColor="@color/white"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="244dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo">
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="244dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etFirstname"
@@ -40,12 +40,12 @@
         android:layout_width="313dp"
         android:layout_height="wrap_content"
         app:boxBackgroundColor="@color/white"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="344dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/firstname">
+        app:layout_constraintTop_toBottomOf="@+id/firstname"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="344dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etLastname"
@@ -64,12 +64,12 @@
         android:layout_width="313dp"
         android:layout_height="wrap_content"
         app:boxBackgroundColor="@color/white"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="372dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lastname">
+        app:layout_constraintTop_toBottomOf="@+id/lastname"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="372dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etUsername"
@@ -91,13 +91,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:boxBackgroundColor="@color/white"
-        app:passwordToggleEnabled="true"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="466dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username">
+        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:passwordToggleEnabled="true"
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="466dp">
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -117,13 +117,13 @@
         android:layout_width="313dp"
         android:layout_height="wrap_content"
         app:boxBackgroundColor="@color/white"
-        app:passwordToggleEnabled="true"
-        tools:layout_editor_absoluteX="13dp"
-        tools:layout_editor_absoluteY="615dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password">
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        app:passwordToggleEnabled="true"
+        tools:layout_editor_absoluteX="13dp"
+        tools:layout_editor_absoluteY="615dp">
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -139,47 +139,50 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/changePassword"
+        android:id="@+id/signupBtn"
         android:layout_width="328dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginTop="20dp"
-        android:enabled="false"
+        android:enabled="true"
         android:text="@string/action_create_account"
         android:textColor="#FFFFFF"
-        app:backgroundTint="@color/blue"
+        app:backgroundTint="#0085FF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirm_password"
         app:rippleColor="@color/white" />
 
-    <ProgressBar
-        android:id="@+id/loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="64dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/password"
-        app:layout_constraintStart_toStartOf="@+id/password"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+<!--    <ProgressBar-->
+<!--        android:id="@+id/loading"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginStart="32dp"-->
+<!--        android:layout_marginTop="64dp"-->
+<!--        android:layout_marginEnd="32dp"-->
+<!--        android:layout_marginBottom="64dp"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="@+id/password"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/password"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.3" />-->
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="227dp"
-        android:layout_height="135dp"
-        android:layout_marginTop="64dp"
-        android:contentDescription="@string/omnidrive_logo"
+        android:layout_width="217.25dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="80dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/omnidrive" />
+        tools:src="@drawable/omnidrive"
+        android:contentDescription="logo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
