@@ -38,6 +38,14 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 connect();
+                User user = new User("test@gmail.com", "FirstName", "lastName", "PW");
+                Bundle extras = new Bundle();
+                extras.putString("email", user.getEmail());
+                extras.putString("firstname", user.getFirstname());
+                extras.putString("lastname", user.getLastname());
+                extras.putString("password", user.getPassword());
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class).putExtras(extras);
+                startActivity(intent);
             }
         });
 
