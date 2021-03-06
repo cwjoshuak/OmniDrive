@@ -35,6 +35,7 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         Activity activity = this;
+
         PublicClientApplication.createSingleAccountPublicClientApplication(getApplicationContext(),
                 R.raw.auth_config_single_account,
                 new IPublicClientApplication.ISingleAccountApplicationCreatedListener() {
@@ -52,7 +53,6 @@ public class Settings extends AppCompatActivity {
                         signInWithMicrosoft.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-
                                 mSingleAccountApp.signIn(activity, null, new String[]{"Files.Read.All"}, getAuthInteractiveCallback());
                             }
                         });
@@ -67,6 +67,8 @@ public class Settings extends AppCompatActivity {
 
 
     }
+
+
     private AuthenticationCallback getAuthInteractiveCallback() {
         return new AuthenticationCallback() {
 
@@ -106,25 +108,26 @@ public class Settings extends AppCompatActivity {
 
     private void callGraphAPI(final IAuthenticationResult authenticationResult) {
         Activity activity = this;
-//        MSGraphRequestWrapper.callGraphAPIUsingVolley(
-//                activity,
-//                graphResourceTextView.getText().toString(),
-//                authenticationResult.getAccessToken(),
-//                new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        /* Successfully called graph, process data and send to UI */
-//                        Log.d(TAG, "Response: " + response.toString());
+        final String defaultGraphResourceUrl = MSGraphRequestWrapper.MS_GRAPH_ROOT_ENDPOINT + "v1.0/me";
+        MSGraphRequestWrapper.callGraphAPIUsingVolley(
+                activity,
+                defaultGraphResourceUrl,
+                authenticationResult.getAccessToken(),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        /* Successfully called graph, process data and send to UI */
+                        Log.d("TAG", "Response: " + response.toString());
 //                        displayGraphResult(response);
-//                    }
-//                },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        Log.d(TAG, "Error: " + error.toString());
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("TAG", "Error: " + error.toString());
 //                        displayError(error);
-//                    }
-//                });
+                    }
+                });
     }
 
     private void loadAccount() {
@@ -137,6 +140,10 @@ public class Settings extends AppCompatActivity {
             public void onAccountLoaded(@Nullable IAccount activeAccount) {
                 // You can use the account data to update your UI or your app database.
                 mAccount = activeAccount;
+                System.out.println("I SINGLE ACCOUNT APP:" +mSingleAccountApp);
+
+                System.out.println("I SINGLE ACCOUNT APP:" +activeAccount);
+
             }
 
             @Override

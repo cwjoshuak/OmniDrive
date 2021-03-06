@@ -1,13 +1,16 @@
 {
-  "client_id" : "0984a7b6-bc13-4141-8b0d-8f767e136bb7",
+  "client_id" :  "d57fbdfb-b1ef-486e-9bc2-fb7d9441d1ff",
   "authorization_user_agent" : "DEFAULT",
-  "redirect_uri" : "msauth://com.azuresamples.msalandroidapp/1wIqXSqBj7w%2Bh11ZifsnqwgyKrY%3D",
+  "redirect_uri" : "msauth://com.example.omnidrive/2jmj7l5rSw0yVb%2FvlWAYkK%2FYBwk%3D",
   "account_mode" : "SINGLE",
-  "broker_redirect_uri_registered": true,
+  "broker_redirect_uri_registered": false,
   "authorities" : [
     {
       "type": "AAD",
-      "authority_url": "https://login.microsoftonline.com/common"
+      "audience": {
+        "type": "AzureADandPersonalMicrosoftAccount",
+        "tenant_id": "common"
+      }
     }
   ]
 }

@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 connect();
+                // TODO : REMOVE
                 User user = new User("test@gmail.com", "FirstName", "lastName", "PW");
                 Bundle extras = new Bundle();
                 extras.putString("email", user.getEmail());
