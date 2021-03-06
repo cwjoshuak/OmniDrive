@@ -5,7 +5,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.omnidrive.ui.login.LoginActivity;
 import com.example.omnidrive.ui.main.SectionsPagerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -28,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private AppBarConfiguration mAppBarConfiguration;
     private DrawerLayout drawer;
+    private Bundle extras;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +66,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        // TODO: populate name & email of user on sidebar from server data
+        View headerView = navigationView.getHeaderView(0);
+        TextView username = (TextView) headerView.findViewById(R.id.welcome_user_name);
+        TextView email = (TextView) headerView.findViewById(R.id.user_email);
 
+        Intent intent = getIntent();
+        extras = intent.getExtras();
+        String passEmail = extras.getString("email");
+        String passName = intent.getStringExtra("firstname");
+        username.setText("Welcome " + passName);
+        email.setText(passEmail);
     }
 
     @Override
@@ -100,18 +114,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
 
             case R.id.settings: {
-                Intent intent = new Intent(getApplicationContext(), Settings.class);
+                Intent intent = new Intent(getApplicationContext(), Settings.class).putExtras(extras);
                 startActivity(intent);
                 break;
             }
 
             case R.id.account: {
-                Intent intent = new Intent(getApplicationContext(), AccountSettings.class);
+                Intent intent = new Intent(getApplicationContext(), AccountSettings.class).putExtras(extras);
                 startActivity(intent);
                 break;
             }
 
             case R.id.logout: {
+                extras = null;
+                Toast.makeText(MainActivity.this, "Logged out", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(getApplicationContext(), WelcomePage.class);
                 startActivity(intent);
                 break;
