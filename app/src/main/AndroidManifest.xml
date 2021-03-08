@@ -53,7 +53,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="msauth"
                     android:host="com.example.omnidrive"
-                    android:path="/2jmj7l5rSw0yVb/vlWAYkK/YBwk=" />
+                    android:path="/2jmj7l5rSw0yVb/vlWAYkK/YBwk="/>
             </intent-filter>
         </activity>
     </application>
