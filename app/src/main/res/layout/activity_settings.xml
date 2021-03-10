@@ -52,7 +52,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
         app:strokeColor="@color/blue"
-        app:strokeWidth="1sp" />
+        app:strokeWidth="1sp"
+        android:visibility="invisible"
+        android:enabled="false"/>
 
     <Button
         android:id="@+id/btnGoogleSignOut"
@@ -69,8 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView6"
         app:strokeColor="@color/blue"
         app:strokeWidth="1sp"
-        android:visibility="invisible"
-        android:enabled="false"/>
+        android:enabled="true"/>
 
     <Button
         android:id="@+id/btnDropboxSignIn"
