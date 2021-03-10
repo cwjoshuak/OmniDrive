@@ -1,0 +1,16 @@
+{
+  "client_id" :  "d57fbdfb-b1ef-486e-9bc2-fb7d9441d1ff",
+  "authorization_user_agent" : "DEFAULT",
+  "redirect_uri" : "msauth://com.example.omnidrive/2jmj7l5rSw0yVb%2FvlWAYkK%2FYBwk%3D",
+  "account_mode" : "SINGLE",
+  "broker_redirect_uri_registered": false,
+  "authorities" : [
+    {
+      "type": "AAD",
+      "audience": {
+        "type": "AzureADandPersonalMicrosoftAccount",
+        "tenant_id": "common"
+      }
+    }
+  ]
+}

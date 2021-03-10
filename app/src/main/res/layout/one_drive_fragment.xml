@@ -2,23 +2,30 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:gravity="center"
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/onedriveTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nothing to show here"
-        android:textSize="30sp"
-    />
+        android:textSize="30sp" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/onedriveImageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/emptydrive" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/onedriveRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="visible" />
 
 
 </LinearLayout>
