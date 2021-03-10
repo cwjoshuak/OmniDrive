@@ -130,15 +130,15 @@
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/white"
         android:drawableLeft="@drawable/onedrive"
-        android:text="Disonnect OneDrive"
+        android:enabled="false"
+        android:text="Disconnect OneDrive"
         android:textColor="@color/blue"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnGoogleSignIn"
         app:strokeColor="@color/blue"
-        app:strokeWidth="1sp"
-        android:visibility="invisible"
-        android:enabled="false"/>
+        app:strokeWidth="1sp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

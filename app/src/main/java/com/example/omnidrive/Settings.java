@@ -59,10 +59,7 @@ public class Settings extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 mSingleAccountApp.signIn(activity, null, new String[]{"Files.Read.All"}, getAuthInteractiveCallback());
-                                signInWithMicrosoft.setVisibility(View.INVISIBLE);
-                                signInWithMicrosoft.setEnabled(false);
-                                signOutMicrosoft.setVisibility(View.VISIBLE);
-                                signOutMicrosoft.setEnabled(true);
+
                             }
                         });
                         signOutMicrosoft.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +69,11 @@ public class Settings extends AppCompatActivity {
                                 mSingleAccountApp.signOut(new ISingleAccountPublicClientApplication.SignOutCallback() {
                                     @Override
                                     public void onSignOut() {
-                                        Toast.makeText(Settings.this, "Signed out of One Drive", Toast.LENGTH_SHORT).show();
+                                        signOutMicrosoft.setVisibility(View.INVISIBLE);
+                                        signOutMicrosoft.setEnabled(false);
+                                        signInWithMicrosoft.setVisibility(View.VISIBLE);
+                                        signInWithMicrosoft.setEnabled(true);
+                                        Toast.makeText(Settings.this, "Signed out of OneDrive", Toast.LENGTH_SHORT).show();
                                     }
 
                                     @Override
@@ -80,16 +81,12 @@ public class Settings extends AppCompatActivity {
                                         Toast.makeText(Settings.this, "Unable to sign out of One Drive", Toast.LENGTH_SHORT).show();
                                     }
                                 });
-                                signOutMicrosoft.setVisibility(View.INVISIBLE);
-                                signOutMicrosoft.setEnabled(false);
-                                signInWithMicrosoft.setVisibility(View.VISIBLE);
-                                signInWithMicrosoft.setEnabled(true);
+
 
                             }
                         });
 
                         signOutAll.setOnClickListener(new View.OnClickListener() {
-
                             @Override
                             public void onClick(View v) {
                                 mSingleAccountApp.signOut(new ISingleAccountPublicClientApplication.SignOutCallback() {
@@ -117,9 +114,6 @@ public class Settings extends AppCompatActivity {
                         System.out.println(exception.getMessage());
                     }
                 });
-
-
-
     }
 
 
@@ -132,9 +126,22 @@ public class Settings extends AppCompatActivity {
                 Log.d("", "Successfully authenticated");
                 Log.d("TAG", "ID Token: " + authenticationResult.getAccount().getClaims().get("id_token"));
 
+                final Button signInWithMicrosoft = findViewById(R.id.btnMicrosoftSignIn);
+                final Button signOutMicrosoft = findViewById(R.id.btnMicrosoftSignOut);
                 /* Update account */
                 mAccount = authenticationResult.getAccount();
-
+                if (mAccount == null) {
+                    signOutMicrosoft.setVisibility(View.INVISIBLE);
+                    signOutMicrosoft.setEnabled(false);
+                    signInWithMicrosoft.setVisibility(View.VISIBLE);
+                    signInWithMicrosoft.setEnabled(true);
+                    return;
+                } else {
+                    signInWithMicrosoft.setVisibility(View.INVISIBLE);
+                    signInWithMicrosoft.setEnabled(false);
+                    signOutMicrosoft.setVisibility(View.VISIBLE);
+                    signOutMicrosoft.setEnabled(true);
+                }
                 /* call graph */
                 callGraphAPI(authenticationResult);
             }
@@ -188,21 +195,26 @@ public class Settings extends AppCompatActivity {
         final Button signInWithMicrosoft = findViewById(R.id.btnMicrosoftSignIn);
         final Button signOutMicrosoft = findViewById(R.id.btnMicrosoftSignOut);
 
-        if (mSingleAccountApp == null) {
-            signOutMicrosoft.setVisibility(View.INVISIBLE);
-            signOutMicrosoft.setEnabled(false);
-            signInWithMicrosoft.setVisibility(View.VISIBLE);
-            signInWithMicrosoft.setEnabled(true);
-            return;
-        }
+
 
         mSingleAccountApp.getCurrentAccountAsync(new ISingleAccountPublicClientApplication.CurrentAccountCallback() {
             @Override
             public void onAccountLoaded(@Nullable IAccount activeAccount) {
                 // You can use the account data to update your UI or your app database.
                 mAccount = activeAccount;
+                if (mAccount == null) {
+                    signOutMicrosoft.setVisibility(View.INVISIBLE);
+                    signOutMicrosoft.setEnabled(false);
+                    signInWithMicrosoft.setVisibility(View.VISIBLE);
+                    signInWithMicrosoft.setEnabled(true);
+                    return;
+                } else {
+                    signInWithMicrosoft.setVisibility(View.INVISIBLE);
+                    signInWithMicrosoft.setEnabled(false);
+                    signOutMicrosoft.setVisibility(View.VISIBLE);
+                    signOutMicrosoft.setEnabled(true);
+                }
                 System.out.println("I SINGLE ACCOUNT APP:" +mSingleAccountApp);
-
                 System.out.println("I SINGLE ACCOUNT APP:" +activeAccount);
 
             }

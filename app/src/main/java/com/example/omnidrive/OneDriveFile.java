@@ -7,16 +7,17 @@ import org.json.JSONObject;
 public class OneDriveFile {
     public String createdDateTime;
     public String name;
-
     public ParentReference parentReference;
-
     public long size;
     public Folder folder;
     public File file;
-
     public boolean isBackDirectory = false;
-
     public OneDriveFile parentFile;
+
+    public OneDriveFile(String name) {
+        this.name = name;
+        this.file = new File();
+    }
     @Override
     public String toString() {
         return "OneDriveFile{" +

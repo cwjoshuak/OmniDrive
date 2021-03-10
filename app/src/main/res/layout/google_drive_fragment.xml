@@ -8,15 +8,21 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/googledriveTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nothing to show here"
         android:textSize="30sp" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/googledriveImageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/emptydrive" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/googleDriveRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
