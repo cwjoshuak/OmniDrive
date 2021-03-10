@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,9 +24,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.omnidrive.MSGraphRequestWrapper;
+import com.example.omnidrive.MainActivity;
 import com.example.omnidrive.OneDriveFile;
 import com.example.omnidrive.OneDriveFileList;
 import com.example.omnidrive.R;
+import com.example.omnidrive.ui.login.LoginActivity;
 import com.google.gson.Gson;
 import com.microsoft.identity.client.IAccount;
 import com.microsoft.identity.client.IAuthenticationResult;
@@ -87,7 +90,9 @@ public class OneDriveFragment extends Fragment {
 //                }
 //                defaultGraphResourceUrl = MSGraphRequestWrapper.MS_GRAPH_ROOT_ENDPOINT + "v1.0/me/" +newPath;
 
-            } else {
+            }
+
+            else {
                 defaultGraphResourceUrl = MSGraphRequestWrapper.MS_GRAPH_ROOT_ENDPOINT + "v1.0/me" +item.getFullPath()+":/children";
                 item.isBackDirectory = true;
                 lastFilesClicked.push(item);

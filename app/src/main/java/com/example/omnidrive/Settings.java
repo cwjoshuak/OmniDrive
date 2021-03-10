@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.example.omnidrive.ui.login.LoginActivity;
 import com.microsoft.identity.client.AuthenticationCallback;
 import com.microsoft.identity.client.IAccount;
 import com.microsoft.identity.client.IAuthenticationResult;
@@ -36,6 +39,7 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         Activity activity = this;
 
+
         PublicClientApplication.createSingleAccountPublicClientApplication(getApplicationContext(),
                 R.raw.auth_config_single_account,
                 new IPublicClientApplication.ISingleAccountApplicationCreatedListener() {
@@ -48,12 +52,62 @@ public class Settings extends AppCompatActivity {
                         mSingleAccountApp = application;
                         loadAccount();
 
-                        // TODO: implement oauth when buttons are clicked
-                        final ImageButton signInWithMicrosoft = findViewById(R.id.signInWithMicrosoft);
+                        final Button signInWithMicrosoft = findViewById(R.id.btnMicrosoftSignIn);
+                        final Button signOutMicrosoft = findViewById(R.id.btnMicrosoftSignOut);
+                        final Button signOutAll = findViewById(R.id.btnSignOutAll);
                         signInWithMicrosoft.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 mSingleAccountApp.signIn(activity, null, new String[]{"Files.Read.All"}, getAuthInteractiveCallback());
+                                signInWithMicrosoft.setVisibility(View.INVISIBLE);
+                                signInWithMicrosoft.setEnabled(false);
+                                signOutMicrosoft.setVisibility(View.VISIBLE);
+                                signOutMicrosoft.setEnabled(true);
+                            }
+                        });
+                        signOutMicrosoft.setOnClickListener(new View.OnClickListener() {
+
+                            @Override
+                            public void onClick(View v) {
+                                mSingleAccountApp.signOut(new ISingleAccountPublicClientApplication.SignOutCallback() {
+                                    @Override
+                                    public void onSignOut() {
+                                        Toast.makeText(Settings.this, "Signed out of One Drive", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void onError(@NonNull MsalException exception) {
+                                        Toast.makeText(Settings.this, "Unable to sign out of One Drive", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                signOutMicrosoft.setVisibility(View.INVISIBLE);
+                                signOutMicrosoft.setEnabled(false);
+                                signInWithMicrosoft.setVisibility(View.VISIBLE);
+                                signInWithMicrosoft.setEnabled(true);
+
+                            }
+                        });
+
+                        signOutAll.setOnClickListener(new View.OnClickListener() {
+
+                            @Override
+                            public void onClick(View v) {
+                                mSingleAccountApp.signOut(new ISingleAccountPublicClientApplication.SignOutCallback() {
+                                    @Override
+                                    public void onSignOut() {
+                                        Toast.makeText(Settings.this, "Signed out of all accounts", Toast.LENGTH_SHORT).show();
+                                        signOutMicrosoft.setVisibility(View.INVISIBLE);
+                                        signOutMicrosoft.setEnabled(false);
+                                        signInWithMicrosoft.setVisibility(View.VISIBLE);
+                                        signInWithMicrosoft.setEnabled(true);
+                                    }
+
+                                    @Override
+                                    public void onError(@NonNull MsalException exception) {
+                                        Toast.makeText(Settings.this, "Unable to sign out", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
                             }
                         });
                     }
@@ -131,7 +185,14 @@ public class Settings extends AppCompatActivity {
     }
 
     private void loadAccount() {
+        final Button signInWithMicrosoft = findViewById(R.id.btnMicrosoftSignIn);
+        final Button signOutMicrosoft = findViewById(R.id.btnMicrosoftSignOut);
+
         if (mSingleAccountApp == null) {
+            signOutMicrosoft.setVisibility(View.INVISIBLE);
+            signOutMicrosoft.setEnabled(false);
+            signInWithMicrosoft.setVisibility(View.VISIBLE);
+            signInWithMicrosoft.setEnabled(true);
             return;
         }
 

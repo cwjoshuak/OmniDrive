@@ -57,7 +57,6 @@ public class AccountSettings extends AppCompatActivity {
         final Button saveChanges = findViewById(R.id.save_changes);
         saveChanges.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // TODO: change first name, last name, email in database, add pop up to confirm changes
                 if (email.getText().toString().isEmpty() || first.getText().toString().isEmpty() || last.getText().toString().isEmpty()) {
                     Toast.makeText(AccountSettings.this, "Fields cannot be blank", Toast.LENGTH_SHORT).show();
                     return;
